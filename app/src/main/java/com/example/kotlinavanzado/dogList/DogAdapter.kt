@@ -2,6 +2,7 @@ package com.example.kotlinavanzado.dogList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,10 @@ class DogAdapter: ListAdapter<Dog, DogAdapter.DogViewHolder>(DiffCallback) {
         }
     }
 
+    private var onItemClickListener:((Dog)-> Unit)?= null
+    fun setOnItemClickListener(onItemClickListener: (Dog)-> Unit){
+        this.onItemClickListener = onItemClickListener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
 
 
@@ -36,6 +41,9 @@ class DogAdapter: ListAdapter<Dog, DogAdapter.DogViewHolder>(DiffCallback) {
 
 inner class DogViewHolder(val binding: DogListItemBinding): RecyclerView.ViewHolder(binding.root){
     fun bind(dog:Dog){
+        binding.txtDogs.setOnClickListener{
+            onItemClickListener?.invoke(dog)
+        }
         binding.txtDogs.text = dog.name
     }
 }
