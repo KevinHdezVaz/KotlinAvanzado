@@ -6,6 +6,7 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.kotlinavanzado.databinding.ActivityMainBinding
 import com.example.kotlinavanzado.databinding.DogListItemBinding
 import com.example.kotlinavanzado.model.Dog
@@ -41,10 +42,11 @@ class DogAdapter: ListAdapter<Dog, DogAdapter.DogViewHolder>(DiffCallback) {
 
 inner class DogViewHolder(val binding: DogListItemBinding): RecyclerView.ViewHolder(binding.root){
     fun bind(dog:Dog){
-        binding.txtDogs.setOnClickListener{
+        binding.dogListItemLayout.setOnClickListener{
             onItemClickListener?.invoke(dog)
         }
-        binding.txtDogs.text = dog.name
+         binding.dogImage.load(dog.imageUrl)
+
     }
 }
 }

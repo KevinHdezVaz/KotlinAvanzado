@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinavanzado.ViewModel.DogListViewModel
 import com.example.kotlinavanzado.api.apiResponsesStatus
@@ -23,9 +24,9 @@ class DogList : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val loadingWhell = binding.loadingWheel
-         val recyclerView = binding.dogRecycler
-        recyclerView.layoutManager = LinearLayoutManager(this)
+ //      val loadingWhell = binding.loadingWheel
+   //      val recyclerView = binding.dogRecycler
+     //   recyclerView.layoutManager = GridLayoutManager(this,3)
         val adapter = DogAdapter()
         adapter.setOnItemClickListener {
         //PASAR EL dog a DogDetailActivity
@@ -33,12 +34,13 @@ class DogList : AppCompatActivity() {
         intent.putExtra(DOG_KEY, it)
             startActivity(intent)
         }
-        recyclerView.adapter = adapter
+       // recyclerView.adapter = adapter
 
         doglistViewModel.doglist.observe(this){
             doglist ->
             adapter.submitList(doglist)
         }
+        /*
         doglistViewModel.status.observe(this){
             status->
 
@@ -47,15 +49,15 @@ class DogList : AppCompatActivity() {
                 is apiResponsesStatus.ERROR ->
                 {
                     Toast.makeText(this,status.message,Toast.LENGTH_SHORT).show()
-                    loadingWhell.visibility = View.GONE
+         //           loadingWhell.visibility = View.GONE
                 }
-                is apiResponsesStatus.LOADING -> loadingWhell.visibility = View.VISIBLE
-                is apiResponsesStatus.SUCCESS ->  loadingWhell.visibility = View.GONE
+           //     is apiResponsesStatus.LOADING -> loadingWhell.visibility = View.VISIBLE
+             //   is apiResponsesStatus.SUCCESS ->  loadingWhell.visibility = View.GONE
 
             }
 
 
-        }
+        }*/
       }
 
 }

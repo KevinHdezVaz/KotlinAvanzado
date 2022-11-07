@@ -1,10 +1,10 @@
 package com.example.kotlinavanzado.repository
 
-import com.example.kotlinavanzado.api.DTO.DogDTOPMapper
+ import com.example.kotlinavanzado.api.DTO.DogDTOPMapper
 import com.example.kotlinavanzado.api.DogsApi.retrofitService
 import com.example.kotlinavanzado.api.apiResponsesStatus
-import com.example.kotlinavanzado.api.makeNetworkCall
-import com.example.kotlinavanzado.model.Dog
+ import com.example.kotlinavanzado.api.makeNetworkCall
+ import com.example.kotlinavanzado.model.Dog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
